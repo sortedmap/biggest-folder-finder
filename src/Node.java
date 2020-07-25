@@ -11,12 +11,17 @@ public class Node
 
     public Node(File folder, long limit)
     {
-        this.folder = folder;
+        this(folder);
         this.limit = limit;
+    }
+
+    public Node(File folder)
+    {
+        this.folder = folder;
         children = new ArrayList<>();
     }
 
-    public long getLimit()
+    private long setLimit(long limit)
     {
         return limit;
     }
@@ -29,6 +34,7 @@ public class Node
     public void addChild(Node node)
     {
         node.setLevel(level + 1);
+        node.setLimit(limit);
         children.add(node);
     }
 
