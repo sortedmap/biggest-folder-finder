@@ -4,6 +4,8 @@ import java.util.concurrent.ForkJoinPool;
 
 public class Main
 {
+    private static char[] sizeMultipliers = {'B', 'K', 'M', 'G', 'T'};
+
     public static void main(String[] args)
     {
         System.out.println(getSizeFromHumanReadable("235K"));
@@ -40,7 +42,17 @@ public class Main
     //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
     public static String getHumanReadableSize(long size)
     {
-        return "";
+        for(int i = 0; i < sizeMultipliers.length; i++)
+        {
+            double value = size / Math.pow(1024, i);
+            if(value < 1024)
+            {
+                return Math.round(value) + "" +
+                    sizeMultipliers[i] +
+                    (i > 0 ? "b" : "");
+            }
+        }
+        return "Very big!";
     }
 
     //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
@@ -61,12 +73,11 @@ public class Main
 
     private static HashMap<Character, Integer> getMultipliers()
     {
-        char[] multipliers = {'B', 'K', 'M', 'G', 'T'};
         HashMap<Character, Integer> char2multiplier = new HashMap<>();
-        for(int i = 0; i < multipliers.length; i++)
+        for(int i = 0; i < sizeMultipliers.length; i++)
         {
             char2multiplier.put(
-                multipliers[i],
+                sizeMultipliers[i],
                 (int) Math.pow(1024, i)
             );
         }
