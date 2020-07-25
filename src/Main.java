@@ -34,4 +34,19 @@ public class Main
         }
         return sum;
     }
+
+    //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
+    public String getHumanReadableSize(long size)
+    {
+        return "";
+    }
+
+    //TODO: 24B, 234Kb, 36Mb, 34Gb, 42Tb
+    //  24B, 234K, 36M, 34G, 42T
+    //  235K => 240640
+    public long getSizeFromHumanReadable(String size)
+    {
+
+        return 0;
+    }
 }
